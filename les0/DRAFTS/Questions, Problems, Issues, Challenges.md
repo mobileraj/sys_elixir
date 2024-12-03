@@ -1,0 +1,6 @@
+- Message data passed seems like it would need to be very small for efficiency, since it is always copied. How would big data be handled effectively? It seems like you would need some sort of shared resource.
+- Would Erlang be useful for big number crunching?
+- Erlang has been called declarative, functional, and "the only true object-oriented programming language." How do these ways of thinking play out in real applications? How is this different from, say, C++?
+- I'm curious about mnesia (their database management system). How can it efficiently store and perform queries in a distributed system, especially since nodes can be assumed to be unreliable? Would it be confined to the storage of the device it is on?
+- Systems thinking attempts to model relationships with casual links between stock. What methods would be used to find the right stocks for the system, as there are many possible factors which affect each other? What about stocks which are difficult to gather statistics on?
+- How would non-determined systems be modeled? Systems where a stock has the random chance to increase or decrease another stock.
