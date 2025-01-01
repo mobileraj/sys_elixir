@@ -1,0 +1,63 @@
+<html>
+<head>
+    <script>
+        function lookupCode(formEvent) {
+            const validationRegex = /^(\d{5})(\.\d+)?$/;
+            const code = new FormData(formEvent).get('code');
+            const messageElement = document.getElementById("lookupCode-message");
+            const parsedCode = validationRegex.exec(code);
+            if(!parsedCode) {
+                messageElement.replaceChildren(`Error, invalid code "${code}". Must be in the format XXXXX or XXXXX.X`);
+            } else {
+                if(!parsedCode[2]){
+                    fetch(`api/billing-code/${code}`).then(async (res) => {
+                        messageElement.replaceChildren(res.ok 
+                            ? buildBillingCodeElement(await res.json()) 
+                            : (res.status === 404 ? "Billing code not found" : `Error: ${res.status}`));
+                    });
+                } else {
+                    const searchUrl = new URL(`api/billing-code/search/`);
+                    searchUrl.searchParams.append("partial_code", code);
+                    fetch(searchUrl).then(async (res) => {
+                        messageElement.replaceChildren(res.ok 
+                            ? buildSearchResults(await res.json())
+                            : (res.status === 404 ? "Billing code not found" : `Error: ${res.status}`));
+                    });
+                }
+            }
+            return false;
+        }
+
+        function buildBillingCodeElement(billingCode) {
+            return `
+                <div class="mb">
+                    <div>Billing Code: ${billingCode["code"]}.${billingCode["number"]}</div>
+                    <div>Medical Branch: ${billingCode["medical_branch"]}</div>
+                    <div>Description: ${billingCode["description"]}</div>
+                    <div>Cost: ${billingCode["cost"]}</div>
+                    <form action="PUT /api/${billingCode["code"]}.${billingCode["number"]}/comment">
+                        <label for="comment">Comment: </label>
+                        <input type="text" name="comment" required> <button type="submit">Submit</button>
+                    </form>
+                </div>
+            `;
+        }
+
+        function buildSearchResults(results) {
+            return `
+                <div><i>Search Results: </i></div>
+                <br>
+                <br>
+                ${results.map(buildBillingCodeElement).join('<br>')}
+            `;
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="return lookupCode(this);">
+        <label for="code">Enter a billing code:</label>
+        <input type="text" name="code" required> <button type="submit">Lookup code</button>
+    </form>
+    <div id="lookupCode-message"></div>
+</body>
+</html>
