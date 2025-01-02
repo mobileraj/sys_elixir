@@ -31,18 +31,18 @@ class Lifeguard(StateMachine):
         print(f'{self.name}: oh no! Someone\'s drowning. I am going to rescue them.');
 
     def on_enter_reporter(self):
-        print(f'{self.name}: oh no! I have to do paperwork??');
+        print(f'{self.name}: oh no! I have to do paperwork?? Ah well I\'m a lawyer');
 
 
 lifeguard = Lifeguard('Rohan');
 
 lifeguard.activate_initial_state();
-lifeguard.send('clean');
-lifeguard.send('rotate');
-lifeguard.send('yell_at_kids');
-lifeguard.send('emergency');
-lifeguard.send('finish_rescue');
-lifeguard.send('submit_report');
-lifeguard.send('rotate');
+lifeguard.clean();
+lifeguard.rotate();
+lifeguard.yell_at_kids();
+lifeguard.emergency();
+lifeguard.finish_rescue();
+lifeguard.submit_report();
+lifeguard.rotate();
 
 
