@@ -2,3 +2,4 @@
 .env*
 __pycache__
 firebase_cert.json
+les2db-journal
