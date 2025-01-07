@@ -1,0 +1,8 @@
+- Elixir install went smoothly, no tricks needed (followed instructions from [here](https://elixir-lang.org/install.html#windows))
+	- ![[Pasted image 20250105181049.png]]
+- Since it also looks like we will need phoenix, I installed that from [here](https://hexdocs.pm/phoenix/installation.html):
+	- run `mix archive.install hex phx_new`
+	- *No database setup yet*
+	- ![[Pasted image 20250105181337.png]]
+- [[VSCode setup]]
+- [[Neovim setup]]
