@@ -1,0 +1,51 @@
+- object oriented
+- modification of State design pattern (GoF) --> intros EDA to loosen coupling.
+	- more reusable
+### Intro
+- Problem with state: distributes implementation of transition logic across multiple state classes (--> high coupling)
+- Event mechanism ---> centralization of automaton transition stuff (loosens coupling)
+
+### The pattern
+- Intent:
+	- makee an object alter behavior when internal state changes
+	- control states vs evaluation states
+		- control indicates behavior
+		- evaluation indicates variable to assess need for control state change
+	- Focuses on contorl states
+- Motivation
+	- Context = class which implments transition logic
+	- state class
+	- Context passes events (objects) to state class
+	- Vs state pattern:
+		- in state, next state is determined by current state class
+			- thus state classes need to know about other states
+		- in this, next state is determined by context (as it reacts to events from states)
+- structure:
+	- Automaton interface 
+		- implemented by the Context and the concrete State classes
+		- contains operations
+	- State class
+		- contains implementation of certain state
+		- ref to datamodel
+	- Event class (all events are instance of Event class)
+	- Context 
+		- impls transitions logic
+		- contains:
+			- refs to concrete States and reference to the current state 
+			- eventSink
+				- notification interface
+				- impld by context  (EventSink interface)
+			- dataModel
+				- shared storage
+- Relations:
+	- context --> creates datamodel (with eventSink = this) --> delegates methdos to state class 
+		- might send notification to context during execution
+	- next state is determined by current state and event
+- Results:
+	- state class <--- state logic, context class <--- transition logic 
+	- transitions could be implemented by index lookup
+	- extensible, adding state doesn't change the logic in the State classes. 
+	- No redundant interfaces
+*Additional Notes:*
+- State classes define the events 
+- 

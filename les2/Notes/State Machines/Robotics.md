@@ -1,0 +1,4 @@
+- **Definition:** FSM consists of a set of states S and a set of transitions between pairs of states
+	- transition is labeled condition/action
+		- condition causes the transition
+		- action when the transition is taken
