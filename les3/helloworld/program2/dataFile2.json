@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Esteban",
+        "address": {
+            "firstLine": "426 Rocky Rd.",
+            "city": "Chino Hills",
+            "state": "CA",
+            "zip": "12345"
+        },
+        "email": "esteban@example.com"
+    },
+    {
+        "name": "Ferdinand",
+        "address": {
+            "firstLine": "527 New Rd.",
+            "city": "Albany",
+            "state": "NY",
+            "zip": "23456"
+        },
+        "email": "ferdinand@example.com"
+    }
+]

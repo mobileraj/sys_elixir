@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Bob",
+        "address": {
+            "firstLine": "123 Foggy Rd.",
+            "city": "Rolla",
+            "state": "MO",
+            "zip": "65401"
+        },
+        "email": "bob@example.com"
+    },
+    {
+        "name": "Caden",
+        "address": {
+            "firstLine": "224 Spring Rd.",
+            "city": "Plato",
+            "state": "MO",
+            "zip": "65552"
+        },
+        "email": "caden@example.com"
+    },
+    {
+        "name": "Dennis",
+        "address": {
+            "firstLine": "325 Marsh Rd.",
+            "city": "New York",
+            "state": "NY",
+            "zip": "34567"
+        },
+        "email": "dennis@example.com"
+    }
+]
