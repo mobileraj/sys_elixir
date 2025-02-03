@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Esteban",
+        "address": "426 Rocky Rd. Chino Hills, CA",
+        "email": "esteban@example.com"
+    },
+    {
+        "name": "Ferdinand",
+        "address": "527 New Rd. Phoenix, AZ",
+        "email": "ferdinand@example.com"
+    }
+]

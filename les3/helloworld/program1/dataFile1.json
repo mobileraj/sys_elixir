@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Bob",
+        "address": "123 Foggy Rd. Rolla, MO",
+        "email": "bob@example.com"
+    },
+    {
+        "name": "Caden",
+        "address": "224 Spring Rd. Denver, CO",
+        "email": "caden@example.com"
+    },
+    {
+        "name": "Dennis",
+        "address": "325 Marsh Rd. New York, NY",
+        "email": "dennis@example.com"
+    }
+]
