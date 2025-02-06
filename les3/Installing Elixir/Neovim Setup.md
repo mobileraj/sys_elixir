@@ -1,4 +1,4 @@
-I used a modified set of instructions from https://elixirforum.com/t/neovim-elixir-setup-configuration-from-scratch-guide/46310 to setup neovim on windows:
+I used a modified set of instructions from https://www.mitchellhanberg.com/how-to-set-up-neovim-for-elixir-development/ to setup neovim on windows:
 - Navigate to this path
 - Run `mix deps.get`
 	- If an error occurs, `mix deps.update --all
