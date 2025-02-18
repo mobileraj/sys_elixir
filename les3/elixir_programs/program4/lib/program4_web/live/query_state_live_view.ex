@@ -3,6 +3,7 @@ defmodule Program4Web.QueryStateLiveView do
 
   import Program4Web.CoreComponents
   import Program4Web.MiscComponents
+  import Program4.Util
 
   def render(assigns) do
     assigns = assigns
@@ -37,7 +38,7 @@ defmodule Program4Web.QueryStateLiveView do
         {
           :noreply,
           socket
-            |> assign(:result, data)
+            |> assign(:result, Enum.map(data, &personRecordToAssigns/1))
         }
       {:aborted, _reason} ->
         {:noreply, socket}

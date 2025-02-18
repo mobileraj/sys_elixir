@@ -3,6 +3,7 @@ defmodule Program4Web.QueryNameLiveView do
 
   import Program4Web.CoreComponents
   import Program4Web.MiscComponents
+  import Program4.Util
 
   def render(assigns) do
     assigns = assigns
@@ -16,7 +17,7 @@ defmodule Program4Web.QueryNameLiveView do
         <.button type="submit">Query</.button>
       </.form>
       <%= if @result do %>
-        <div>Result: {@result}</div>
+        <div>Result:</div>
         <%= if length(@result) > 0 do %>
           <ul>
             <%= for person <- @result do %>
@@ -37,7 +38,7 @@ defmodule Program4Web.QueryNameLiveView do
         {
           :noreply,
           socket
-            |> assign(:result, data)
+            |> assign(:result, Enum.map(data, &personRecordToAssigns/1))
         }
       {:aborted, _reason} ->
         {:noreply, socket}
