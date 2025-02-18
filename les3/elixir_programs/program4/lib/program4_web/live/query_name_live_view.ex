@@ -37,26 +37,10 @@ defmodule Program4Web.QueryNameLiveView do
         {
           :noreply,
           socket
-            |> assign(:result,
-              case encodeRecord(data) do
-                {:ok, json} -> json
-                {:error, reason} -> "ERROR: #{reason}"
-              end
-            )
+            |> assign(:result, data)
         }
       {:aborted, _reason} ->
         {:noreply, socket}
     end
-  end
-
-  defp encodeRecord(data) do
-    data |>
-      Enum.map(fn {:person, email, name, address} ->
-        %{
-          "email" => email,
-          "name" => name,
-          "address" => address
-        }
-      end) |> Jason.encode
   end
 end

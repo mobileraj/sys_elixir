@@ -3,6 +3,7 @@ defmodule Program4Web.QueryEmailLiveView do
 
   import Program4Web.CoreComponents
   import Program4Web.MiscComponents
+  import Program4.Util
 
   def render(assigns) do
     assigns = assigns
@@ -16,11 +17,11 @@ defmodule Program4Web.QueryEmailLiveView do
         <.button type="submit">Query</.button>
       </.form>
       <%= if @result do %>
-        <div>Result: {@result}</div>
+        <div>Result:</div>
         <%= if length(@result) > 0 do %>
           <ul>
             <%= for person <- @result do %>
-              <.person_view {person} />
+              <.person_view {person}/>
             <% end %>
           </ul>
         <% else %>
@@ -37,26 +38,10 @@ defmodule Program4Web.QueryEmailLiveView do
         {
           :noreply,
           socket
-            |> assign(:result,
-              case encodeRecord(data) do
-                {:ok, json} -> json
-                {:error, reason} -> "ERROR: #{reason}"
-              end
-            )
+            |> assign(:result, Enum.map(data, &personRecordToAssigns/1))
         }
       {:aborted, _reason} ->
         {:noreply, socket}
     end
-  end
-
-  defp encodeRecord(data) do
-    data |>
-      Enum.map(fn {:person, email, name, address} ->
-        %{
-          "email" => email,
-          "name" => name,
-          "address" => address
-        }
-      end) |> Jason.encode
   end
 end
