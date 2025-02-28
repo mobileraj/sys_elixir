@@ -13,3 +13,4 @@ Demos
 .env
 .venv
 .sesskey
+__pycache__

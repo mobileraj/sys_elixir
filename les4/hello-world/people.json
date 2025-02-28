@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Bob",
+        "email": "bob@example.com",
+        "address": {
+            "firstLine": "123 Spring Dr",
+            "city": "Rolla",
+            "state": "MO",
+            "zip": "65401"
+        }
+    },
+    {
+        "name": "Bob",
+        "email": "bob2@example.com",
+        "address": {
+            "firstLine": "789 Dopplegang Ct",
+            "city": "Portland",
+            "state": "ME",
+            "zip": "87708"
+        }
+    },
+    {
+        "name": "Bill",
+        "email": "bill@example.com",
+        "address": {
+            "firstLine": "234 Moss Dr",
+            "city": "Plato",
+            "state": "MO",
+            "zip": "65509"
+        }
+    },
+    {
+        "name": "Alice",
+        "email": "alice@example.com",
+        "address": {
+            "firstLine": "345 Rock Rd",
+            "city": "Sacramento",
+            "state": "CA",
+            "zip": "09998"
+        }
+    }
+]
