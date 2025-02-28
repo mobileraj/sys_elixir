@@ -22,13 +22,13 @@ def MainLayout(*children):
 
 def CustomHeader():
     return Header(
-        PageLink('FUH Test', style='font-size: 1.25rem', path="/"),
+        Div('FUH Test', style='font-size: 1.25rem'),
         Div(
             PageLink("SIYO", style='font-style: italic;', path="/siyo"),
             PageLink("Notifications", style='font-style: italic;', path='/notifications'),
             PageLink("Billing", style='font-style: italic;', path="/billing"),
             PageLink("Admin", style='font-style: italic;', path="/admin"),
-            style="display: flex; flex-direction: row; gap: 1rem"
+            style="display: flex; flex-direction: row; gap: 1rem;"
         ),
         Button('Sign Out'),
         style=""" 
@@ -41,7 +41,9 @@ def CustomHeader():
         """
     );
 def PageLink(*children, path, **attrs):
-    return Div(*children, hx_get=path, **attrs);
+    if not attrs.get('style'): attrs['style'] = '';
+    attrs['style'] = attrs['style'] + ' cursor: pointer; user-select: none;'
+    return A(*children, href=path, **attrs);
 
 def Footer():
     return Div('FUH Web',
