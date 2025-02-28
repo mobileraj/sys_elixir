@@ -45,9 +45,9 @@ defmodule Program5Web.CreatePersonLiveView do
         "zip" => addressZip,
       }
     }) do
-      {:atomic, _} ->
+      {:ok, _} ->
         {:noreply, socket |> put_flash(:info, "Success!")}
-      {:aborted, reason} ->
+      {:error, reason} ->
         {:noreply, socket |> put_flash(:error, "Error: #{reason}")}
     end
   end

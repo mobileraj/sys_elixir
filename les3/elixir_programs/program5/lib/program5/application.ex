@@ -7,7 +7,12 @@ defmodule Program5.Application do
 
   @impl true
   def start(_type, _args) do
-    :application.load(:mnesia)
+    goth_source =
+      "GOOGLE_APPLICATION_CREDENTIALS_JSON"
+      |> System.fetch_env!()
+      |> Jason.decode!()
+      |> (&{:service_account, &1}).()
+
     children = [
       Program5Web.Telemetry,
       {DNSCluster, query: Application.get_env(:program5, :dns_cluster_query) || :ignore},
@@ -16,6 +21,7 @@ defmodule Program5.Application do
       {Finch, name: Program5.Finch},
       # Start a worker by calling: Program5.Worker.start_link(arg)
       # {Program5.Worker, arg},
+      {Goth, name: PhxFire.Goth, source: goth_source},
       # Start to serve requests, typically the last entry
       Program5Web.Endpoint
     ]

@@ -1,4 +1,4 @@
-defmodule Program5Web.QueryEmailLiveView do
+defmodule Program5Web.QueryNameLiveView do
   use Phoenix.LiveView
 
   import Program5Web.CoreComponents
@@ -13,7 +13,7 @@ defmodule Program5Web.QueryEmailLiveView do
     ~H"""
     <div>
       <.form for={@form} phx-submit="query">
-        <.input field={@form[:queryInput]} label="Email:" type="email"/>
+        <.input field={@form[:queryInput]} label="Name:"/>
         <.button type="submit">Query</.button>
       </.form>
       <%= if @result do %>
@@ -21,7 +21,7 @@ defmodule Program5Web.QueryEmailLiveView do
         <%= if length(@result) > 0 do %>
           <ul>
             <%= for person <- @result do %>
-              <.person_view {person}/>
+              <.person_view {person} />
             <% end %>
           </ul>
         <% else %>
@@ -33,14 +33,14 @@ defmodule Program5Web.QueryEmailLiveView do
   end
 
   def handle_event("query", %{"queryInput" => queryInput}, socket) do
-    case Program5.readByEmail(queryInput) do
-      {:atomic, data} ->
+    case Program5.queryBy(name: queryInput) do
+      {:ok, data} ->
         {
           :noreply,
           socket
             |> assign(:result, Enum.map(data, &personRecordToAssigns/1))
         }
-      {:aborted, _reason} ->
+      {:error, _reason} ->
         {:noreply, socket}
     end
   end

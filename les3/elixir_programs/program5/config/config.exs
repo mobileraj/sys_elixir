@@ -60,12 +60,6 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :ex_firebase,
-  project_id: "",
-  service_account_path: "",
-  queue_interval: 1000,
-  queue_batch_size: 10
-
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

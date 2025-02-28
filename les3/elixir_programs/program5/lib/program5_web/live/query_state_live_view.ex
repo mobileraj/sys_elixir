@@ -34,13 +34,13 @@ defmodule Program5Web.QueryStateLiveView do
 
   def handle_event("query", %{"queryInput" => queryInput}, socket) do
     case Program5.queryBy(state: queryInput) do
-      {:atomic, data} ->
+      {:ok, data} ->
         {
           :noreply,
           socket
             |> assign(:result, Enum.map(data, &personRecordToAssigns/1))
         }
-      {:aborted, _reason} ->
+      {:error, _reason} ->
         {:noreply, socket}
     end
   end

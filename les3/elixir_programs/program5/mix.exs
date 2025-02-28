@@ -32,7 +32,8 @@ defmodule Program5.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:ex_firebase, "~> 0.3.1"},
+      {:google_api_firestore, "~> 0.32.2"},
+      {:goth, "~> 1.4"},
       {:phoenix, "~> 1.7.18"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
