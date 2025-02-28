@@ -22,12 +22,12 @@ def MainLayout(*children):
 
 def CustomHeader():
     return Header(
-        Div('FUH Test', style='font-size: 1.25rem', href="/"),
+        PageLink('FUH Test', style='font-size: 1.25rem', path="/"),
         Div(
-            A("SIYO", style='font-style: italic;', href="/siyo"),
-            A("Notifications", style='font-style: italic;', href='/notifications'),
-            A("Billing", style='font-style: italic;', href="/billing"),
-            A("Admin", style='font-style: italic;', href="/admin"),
+            PageLink("SIYO", style='font-style: italic;', path="/siyo"),
+            PageLink("Notifications", style='font-style: italic;', path='/notifications'),
+            PageLink("Billing", style='font-style: italic;', path="/billing"),
+            PageLink("Admin", style='font-style: italic;', path="/admin"),
             style="display: flex; flex-direction: row; gap: 1rem"
         ),
         Button('Sign Out'),
@@ -40,6 +40,8 @@ def CustomHeader():
             justify-content: space-between;
         """
     );
+def PageLink(*children, path, **attrs):
+    return Div(*children, hx_get=path, **attrs);
 
 def Footer():
     return Div('FUH Web',
@@ -47,19 +49,19 @@ def Footer():
 
 @app.get('/')
 def _():
-    return MainLayout(Div('The content'))
+    return MainLayout(Div('The content'));
 
 @app.get('/siyo')
 def _():
-    return MainLayout(Div('SIYO'))
+    return MainLayout(Div('SIYO'));
 @app.get('/notifications')
 def _():
-    return MainLayout(Div('Notifications'))
+    return MainLayout(Div('Notifications'));
 @app.get('/billing')
 def _():
-    return MainLayout(Div('Billing'))
+    return MainLayout(Div('Billing'));
 @app.get('/admin')
 def _():
-    return MainLayout(Div('Admin'))
+    return MainLayout(Div('Admin'));
 
 serve(host='localhost', reload=True);
