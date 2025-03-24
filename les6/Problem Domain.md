@@ -1,0 +1,13 @@
+For this project I plan to address fully or partially the event needs of FUH. There are several potential options:
+- Error reporting - This could either a replacement for Sentry or an add on to route errors to two or three other functions/subscribers in addition to Sentry. These errors could simply be exceptions/crashes which we could run analytics on 
+- Event logging - Write now we are using Ably for events on the iOS app, such as when the user logs in or books an appointment. There will be similar event need on siyo patient web. 
+- Chat - Here, we should consider using a persistent event log as opposed to a pub/sub. Events would be chat messages. Channels could represent each thread between two or more docs.
+- Community - this would have similar requirements to chat. However, here a doc posts a thread that anyone can read. In most cases, docs should only get a notification if there've posted the thread, subscribed to the thread, or received a reply. Perhaps we could use some sort of @mentions system.
+These use-cases could likely be combined into a single event engine (at least with the same core components), although it might end up that some of these would benefit from having separate engines. There could be multiple sub-components within the engine (such as a pub/sub and a persistent event log).
+
+**FOR THIS PROJECT:** Unless we discuss otherwise, I think I will choose to combine event logging and error reporting. Basic requirements:
+- One of the following designs: 1) events must contain an event type; or 2) events must contain an unordered list/set of tags; or 3) events must have an ordered list which acts as an event key, containing the event type as the first element and any sub types in subsequent elements.
+- events must have a field to contain the JSON event-specific payload
+- multiple subscribers must be able to listen to the same event, and all be notified
+- *(optional)* the logs/reports must be persistent (at least for a finite amount of time) to allow the event log to be analyzed. However, this feature could also be implemented in the subscribers themselves (e.x. a subscriber could write the received events to a firestore collection)
+- *(optional)* subscribers can set up custom filters for the events they want to receive. Again, this could instead be a burden placed on subscriber; they receive all events from the channel they've subscribed to and can simply ignore the events which are not relevant to them.
