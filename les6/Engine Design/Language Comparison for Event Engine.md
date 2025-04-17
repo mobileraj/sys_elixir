@@ -36,7 +36,7 @@ Elixir has a similar community to Erlang (although according to  [stack overflow
 #### Deployment
 Elixir comes with the mix build tool, which makes build, packaging and deployment easier. Elixir also supports hot-swapping.
 #### Event Support
-(*In addition to Erlang's event support*) There is the [gen_stage](https://hexdocs.pm/gen_stage/GenStage.html) library (along with many others on hex.pm) which would likely simplify the creation of the event system by providing the basic behaviors for data processing and piping.
+(*In addition to Erlang's event support*) There is the [gen_stage](https://hexdocs.pm/gen_stage/GenStage.html) library (along with many others on hex.pm) which would likely simplify the creation of the event system by providing the basic behaviors for data processing and piping. The [Broadway](http://elixir-broadway.org/) could be used as an alternative.
 We could possibly use Phoenix's pub/sub as well.
 #### Additional features
 Elixir's major advantage over Erlang is its meta-programming capabilities, through macros. Elixir's macros allow for a hygenic, Lisp-like enhancement of the language (which enables the creation of [Domain Specific Languages](https://hexdocs.pm/elixir/main/domain-specific-languages.html)). Although this is a potentially dangerous feature, it could be used for a cleaner and more powerful design and architecture.
